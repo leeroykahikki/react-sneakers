@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-concentric-order"
+  ],
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "order/properties-alphabetical-order": null
+  },
+  "ignoreFiles": ["./node_modules/**", "./src/styles/css/*.css"]
+}
