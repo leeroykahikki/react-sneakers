@@ -1,11 +1,13 @@
-// font-family: 'Inter', sans-serif
-
 body {
   margin: 0;
-  background-color: #e5e5e5;
+  background-color: #e7f6ff;
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
 }
 
 .wrapper {
@@ -32,11 +34,22 @@ header {
 }
 
 .card {
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
   margin-right: 30px;
   border: 1px solid #f3f3f3;
   border-radius: 40px;
   padding: 30px;
   width: 220px;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.06);
+  }
+
+  .favorite {
+    position: absolute;
+    cursor: pointer;
+  }
 
   span {
     opacity: 0.5;
@@ -58,4 +71,93 @@ header {
   cursor: pointer;
   width: 32px;
   height: 32px;
+}
+
+.search-block {
+  border: 1px solid #f3f3f3;
+  border-radius: 10px;
+  padding: 0 15px;
+
+  input {
+    border: 0;
+    padding: 13px;
+    width: 200px;
+    font-size: 16px;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+}
+
+.drawer {
+  position: absolute;
+  right: 0;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 30px;
+  width: 420px;
+  height: 100%;
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+}
+
+.cart-item {
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+  padding: 20px;
+  overflow: hidden;
+
+  .cart-item--img {
+    background-position: 0 -3px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 70px;
+    height: 70px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  b {
+    font-size: 14px;
+  }
+
+  .btn-remove {
+    transition: opacity 0.15s ease-in-out;
+    opacity: 0.5;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.cart-total-block {
+  li {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 20px;
+  }
+
+  div {
+    position: relative;
+    top: -4px;
+    flex: 1;
+    margin: 0 7px;
+    border-bottom: 1px dashed #dfdfdf;
+    height: 1px;
+  }
 }
