@@ -7,7 +7,8 @@
     "stylelint-order"
   ],
   "rules": {
-    "order/properties-alphabetical-order": null
+    "order/properties-alphabetical-order": null,
+    "max-nesting-depth": [2, { "ignore": ["blockless-at-rules", "pseudo-classes"]}]
   },
   "ignoreFiles": ["./node_modules/**", "./src/styles/css/*.css"]
 }
