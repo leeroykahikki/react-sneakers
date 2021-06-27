@@ -1,9 +1,11 @@
 function App() {
   return (
     <div className="wrapper clear">
-      <div className="overlay">
+      <div style={{ display: 'none' }} className="overlay">
         <div className="drawer d-flex flex-column">
-          <h2 className="mb-30">Корзина</h2>
+          <h2 className="d-flex justify-between mb-30">
+            Корзина <img className="btn-remove" src="/img/btn-remove.svg" alt="Remove" />
+          </h2>
 
           <div className="items flex">
             <div className="cart-item d-flex align-center mb-20">
@@ -33,20 +35,23 @@ function App() {
             </div>
           </div>
 
-          <ul className="cart-total-block">
-            <li>
-              <span>Итого:</span>
-              <div></div>
-              <b>21 498 руб.</b>
-            </li>
-            <li>
-              <span>Налог 5%:</span>
-              <div></div>
-              <b>1074 руб.</b>
-            </li>
-          </ul>
-
-          <button>Оформить заказ</button>
+          <div className="cart-total-block">
+            <ul>
+              <li>
+                <span>Итого:</span>
+                <div></div>
+                <b>21 498 руб.</b>
+              </li>
+              <li>
+                <span>Налог 5%:</span>
+                <div></div>
+                <b>1074 руб.</b>
+              </li>
+            </ul>
+            <button className="green-button">
+              Оформить заказ <img src="/img/arrow.svg" alt="arrow" />
+            </button>
+          </div>
         </div>
       </div>
 
