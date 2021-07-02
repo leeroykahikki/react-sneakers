@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 import Drawer from './components/Drawer';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
-const axios = require('axios');
 
 function App() {
   const [cartOpened, setCartOpened] = useState(false);
@@ -50,6 +50,7 @@ function App() {
         <Drawer
           onClose={() => setCartOpened(false)}
           onRemove={handleOnRemoveItemCart}
+          cartOpened={cartOpened}
           items={cartItems}
         />
       )}
