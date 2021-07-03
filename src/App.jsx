@@ -13,6 +13,7 @@ function App() {
   const [searchValue, setSearchValue] = useState(''); // Поиск
   const [cartItems, setCartItems] = useState([]); // Товары в корзине
   const [items, setItems] = useState([]); // Товары
+  const [isLoadingItems, setIsLoadingItems] = useState(true); // Состояние изначальной загрузки карточек из БД
 
   const drawerRef = useRef(null); // Анимация корзины
 
@@ -20,6 +21,7 @@ function App() {
   useEffect(() => {
     axios.get('https://60da8c89801dcb00172909d9.mockapi.io/items').then((res) => {
       setItems(res.data);
+      setIsLoadingItems(false);
     });
 
     axios.get('https://60da8c89801dcb00172909d9.mockapi.io/cart').then((res) => {
@@ -28,9 +30,10 @@ function App() {
   }, []);
 
   // Добавление товаров в корзину
-  const handleOnAddItemCart = (items) => {
+  const handleOnAddItemCart = (items, setIsLoading) => {
     axios.post('https://60da8c89801dcb00172909d9.mockapi.io/cart', items).then((res) => {
       setCartItems((prev) => [...prev, res.data]);
+      setIsLoading(false);
     });
   };
 
@@ -68,6 +71,7 @@ function App() {
           searchValue={searchValue}
           onChangeSearchInput={handleOnChangeSearchInput}
           onAddItemCart={handleOnAddItemCart}
+          isLoadingItems={isLoadingItems}
           items={items}
         />
       </Route>

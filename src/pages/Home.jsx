@@ -1,7 +1,9 @@
 import Card from '../components/Card';
 import FakeCard from '../components/FakeCard';
 
-function Home({ searchValue, onChangeSearchInput, onAddItemCart, items }) {
+function Home({ searchValue, onChangeSearchInput, onAddItemCart, isLoadingItems, items }) {
+  const fakeCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
   return (
     <div className="content p-45">
       <div className="d-flex justify-between align-center mb-40">
@@ -13,18 +15,19 @@ function Home({ searchValue, onChangeSearchInput, onAddItemCart, items }) {
       </div>
 
       <div className="d-flex flex-wrap">
-        <FakeCard />
-        {items
-          .filter((item) => item.title.toLowerCase().includes(searchValue.trim().toLowerCase()))
-          .map((card) => (
-            <Card
-              title={card.title}
-              price={card.price}
-              imageURL={card.imageURL}
-              onAddItemCart={onAddItemCart}
-              key={card.id}
-            />
-          ))}
+        {isLoadingItems
+          ? fakeCards.map((card) => <FakeCard key={card} />)
+          : items
+              .filter((item) => item.title.toLowerCase().includes(searchValue.trim().toLowerCase()))
+              .map((card) => (
+                <Card
+                  title={card.title}
+                  price={card.price}
+                  imageURL={card.imageURL}
+                  onAddItemCart={onAddItemCart}
+                  key={card.id}
+                />
+              ))}
       </div>
     </div>
   );

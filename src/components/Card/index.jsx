@@ -6,7 +6,7 @@ function Card({ title, price, imageURL, onAddItemCart }) {
 
   const handleOnAddItemCart = () => {
     setIsLoading(true);
-    onAddItemCart({ title, price, imageURL });
+    onAddItemCart({ title, price, imageURL }, setIsLoading);
   };
 
   return (
