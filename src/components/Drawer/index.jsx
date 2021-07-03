@@ -5,6 +5,7 @@ function Drawer({ onRemove, setCartOpened, drawerRef, items = [] }) {
   const [overlayRender, setOverlayRender] = useState(false);
   const nodeRef = useRef(null);
 
+  // Таймер на изначальное включение анимации Корзины
   useEffect(() => {
     const timer = setTimeout(() => {
       setOverlayRender(true);
@@ -12,6 +13,7 @@ function Drawer({ onRemove, setCartOpened, drawerRef, items = [] }) {
     return () => clearTimeout(timer);
   }, []);
 
+  // Проверка выключения корзины для запуска таймера анимации
   useEffect(() => {
     if (!overlayRender) {
       const timer = setTimeout(() => {
@@ -25,7 +27,7 @@ function Drawer({ onRemove, setCartOpened, drawerRef, items = [] }) {
     <div ref={drawerRef} className="overlay">
       <TransitionGroup>
         {overlayRender && (
-          <CSSTransition in={overlayRender} timeout={500} nodeRef={nodeRef} classNames="drawer">
+          <CSSTransition timeout={300} nodeRef={nodeRef} classNames="drawer">
             <div ref={nodeRef} className="drawer d-flex flex-column">
               <h2 className="d-flex justify-between mb-30">
                 Корзина

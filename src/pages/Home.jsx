@@ -1,4 +1,5 @@
 import Card from '../components/Card';
+import FakeCard from '../components/FakeCard';
 
 function Home({ searchValue, onChangeSearchInput, onAddItemCart, items }) {
   return (
@@ -12,6 +13,7 @@ function Home({ searchValue, onChangeSearchInput, onAddItemCart, items }) {
       </div>
 
       <div className="d-flex flex-wrap">
+        <FakeCard />
         {items
           .filter((item) => item.title.toLowerCase().includes(searchValue.trim().toLowerCase()))
           .map((card) => (
@@ -19,7 +21,7 @@ function Home({ searchValue, onChangeSearchInput, onAddItemCart, items }) {
               title={card.title}
               price={card.price}
               imageURL={card.imageURL}
-              onClickPlus={onAddItemCart}
+              onAddItemCart={onAddItemCart}
               key={card.id}
             />
           ))}

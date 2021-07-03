@@ -1,18 +1,13 @@
 import { useState } from 'react';
 import styles from './Card.module.scss';
 
-function Card({ title, price, imageURL, onClickPlus }) {
-  const [isAdded, setIsAdded] = useState(false);
+function Card({ title, price, imageURL, onAddItemCart }) {
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleOnClickPlus = () => {
-    onClickPlus({ title, price, imageURL });
-    setIsAdded(!isAdded);
+  const handleOnAddItemCart = () => {
+    setIsLoading(true);
+    onAddItemCart({ title, price, imageURL });
   };
-
-  // Для отслеживания изменения переменных, переданных в массив
-  // useEffect(() => {
-  //   console.log('changed');
-  // }, [isAdded]);
 
   return (
     <div className={styles.card}>
@@ -27,12 +22,16 @@ function Card({ title, price, imageURL, onClickPlus }) {
           <span>Цена:</span>
           <b>{price.toLocaleString()} руб.</b>
         </div>
-        <img
-          className="cu-p"
-          onClick={handleOnClickPlus}
-          src={isAdded ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
-          alt="btn"
-        />
+        <div
+          className={`${styles['btn-add']} ${
+            isLoading ? styles.progress : ''
+          } d-flex align-center justify-center`}>
+          {isLoading ? (
+            <div className="loader" />
+          ) : (
+            <img onClick={handleOnAddItemCart} src="/img/btn-plus.svg" alt="btn" />
+          )}
+        </div>
       </div>
     </div>
   );

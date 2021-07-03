@@ -2,20 +2,21 @@ import { useState, useEffect, useRef } from 'react';
 import { Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import axios from 'axios';
+import Alert from './components/Alert';
 import Drawer from './components/Drawer';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 
 function App() {
-  const [cartOpened, setCartOpened] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
-  const [cartItems, setCartItems] = useState([]);
-  const [items, setItems] = useState([]);
+  const [cartOpened, setCartOpened] = useState(false); // Состояние корзины
+  const [searchValue, setSearchValue] = useState(''); // Поиск
+  const [cartItems, setCartItems] = useState([]); // Товары в корзине
+  const [items, setItems] = useState([]); // Товары
 
-  const drawerRef = useRef(null);
+  const drawerRef = useRef(null); // Анимация корзины
 
-  // Через axios
+  // Изначальный запрос к БД
   useEffect(() => {
     axios.get('https://60da8c89801dcb00172909d9.mockapi.io/items').then((res) => {
       setItems(res.data);
@@ -26,33 +27,30 @@ function App() {
     });
   }, []);
 
-  // Через fetch
-  // useEffect(() => {
-  //   fetch('https://60da8c89801dcb00172909d9.mockapi.io/items')
-  //     .then((res) => res.json())
-  //     .then((json) => setItems(json));
-  // }, []);
-
+  // Добавление товаров в корзину
   const handleOnAddItemCart = (items) => {
     axios.post('https://60da8c89801dcb00172909d9.mockapi.io/cart', items).then((res) => {
       setCartItems((prev) => [...prev, res.data]);
     });
   };
 
+  // Удаление товаров из корзины
   const handleOnRemoveItemCart = (id) => {
     axios.delete(`https://60da8c89801dcb00172909d9.mockapi.io/cart/${id}`);
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  // Обработка поиска
   const handleOnChangeSearchInput = (event) => {
     event.target.value.trim() ? setSearchValue(event.target.value.trimStart()) : setSearchValue('');
   };
 
   return (
     <div className="wrapper clear">
+      <Alert />
       <TransitionGroup>
         {cartOpened && (
-          <CSSTransition in={cartOpened} nodeRef={drawerRef} timeout={500} classNames="overlay">
+          <CSSTransition nodeRef={drawerRef} timeout={300} classNames="overlay">
             <Drawer
               onRemove={handleOnRemoveItemCart}
               setCartOpened={setCartOpened}
