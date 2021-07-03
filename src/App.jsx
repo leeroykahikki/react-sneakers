@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Route } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 import Drawer from './components/Drawer';
 import Header from './components/Header';
@@ -11,6 +12,8 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [cartItems, setCartItems] = useState([]);
   const [items, setItems] = useState([]);
+
+  const drawerRef = useRef(null);
 
   // Через axios
   useEffect(() => {
@@ -46,14 +49,18 @@ function App() {
 
   return (
     <div className="wrapper clear">
-      {cartOpened && (
-        <Drawer
-          onClose={() => setCartOpened(false)}
-          onRemove={handleOnRemoveItemCart}
-          cartOpened={cartOpened}
-          items={cartItems}
-        />
-      )}
+      <TransitionGroup>
+        {cartOpened && (
+          <CSSTransition in={cartOpened} nodeRef={drawerRef} timeout={500} classNames="overlay">
+            <Drawer
+              onRemove={handleOnRemoveItemCart}
+              setCartOpened={setCartOpened}
+              items={cartItems}
+              drawerRef={drawerRef}
+            />
+          </CSSTransition>
+        )}
+      </TransitionGroup>
 
       <Header onClickCart={() => setCartOpened(true)} />
 

@@ -59,21 +59,46 @@ header {
   top: 0;
   left: 0;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
   height: 100%;
+}
+
+.overlay-enter {
+  opacity: 0;
+}
+
+.overlay-enter-active {
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+
+.overlay-enter-done {
+  opacity: 1;
+}
+
+.overlay-exit {
+  opacity: 1;
+}
+
+.overlay-exit-active {
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+
+.overlay-exit-done {
+  opacity: 0;
 }
 
 .drawer {
   position: absolute;
   right: 0;
+  transform: translateX(420px);
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   background: #fff;
   padding: 30px;
   width: 420px;
   height: 100%;
-  // transform: translateX(420px);
-  // transition: transform 0.5s ease-in-out;
 
   .items {
     margin-bottom: 40px;
@@ -96,16 +121,29 @@ header {
 }
 
 .drawer-enter {
-  opacity: 1;
+  transform: translateX(420px);
 }
 
 .drawer-enter-active {
-  transition: opacity 0.5s;
-  opacity: 0;
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
 }
 
 .drawer-enter-done {
-  opacity: 0;
+  transform: translateX(0);
+}
+
+.drawer-exit {
+  transform: translateX(0);
+}
+
+.drawer-exit-active {
+  transform: translateX(420px);
+  transition: transform 0.5s ease-in-out;
+}
+
+.drawer-exit-done {
+  transform: translateX(420px);
 }
 
 .cart-item {
