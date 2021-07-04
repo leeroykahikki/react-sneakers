@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './Header.module.scss';
 
 function Header({ onClickCart }) {
   return (
@@ -18,7 +19,7 @@ function Header({ onClickCart }) {
           <img className="mr-10" width={18} height={18} src="/img/cart.svg" alt="Cart" />
           <span>1205 руб.</span> {/* Добавить сюда toLocaleString() */}
         </li>
-        <li className="mr-30 cu-p">
+        <li className="mr-30">
           <Link to="/favorites">
             <img width={18} height={18} src="/img/heart.svg" alt="Heart" />
           </Link>

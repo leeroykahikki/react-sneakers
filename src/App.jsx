@@ -83,8 +83,6 @@ function App() {
 
                 <Route path="/favorites" exact>
                   <Favorites
-                    searchValue={searchValue}
-                    onChangeSearchInput={handleOnChangeSearchInput}
                     onAddItemCart={handleOnAddItemCart}
                     isLoadingItems={isLoadingItems}
                     items={items}

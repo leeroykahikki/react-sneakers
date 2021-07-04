@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import ButtonGreen from '../ButtonGreen';
 
 function Drawer({ onRemove, setCartOpened, drawerRef, items = [] }) {
   const [overlayRender, setOverlayRender] = useState(false);
@@ -76,9 +77,10 @@ function Drawer({ onRemove, setCartOpened, drawerRef, items = [] }) {
                     <b>1074 руб.</b>
                   </li>
                 </ul>
-                <button className="green-button">
+                {/* <button className="green-button">
                   Оформить заказ <img src="/img/arrow.svg" alt="arrow" />
-                </button>
+                </button> */}
+                <ButtonGreen title="Оформить заказ" isReverse={false} />
               </div>
             </div>
           </CSSTransition>
