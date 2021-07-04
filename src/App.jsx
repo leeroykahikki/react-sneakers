@@ -66,26 +66,35 @@ function App() {
 
       <Header onClickCart={() => setCartOpened(true)} />
 
-      <Switch>
-        <Route path="/" exact>
-          <Home
-            searchValue={searchValue}
-            onChangeSearchInput={handleOnChangeSearchInput}
-            onAddItemCart={handleOnAddItemCart}
-            isLoadingItems={isLoadingItems}
-            items={items}
-          />
-        </Route>
+      <Route
+        render={({ location }) => (
+          <TransitionGroup>
+            <CSSTransition key={location.key} timeout={300} classNames="page-animation">
+              <Switch location={location}>
+                <Route path="/" exact>
+                  <Home
+                    searchValue={searchValue}
+                    onChangeSearchInput={handleOnChangeSearchInput}
+                    onAddItemCart={handleOnAddItemCart}
+                    isLoadingItems={isLoadingItems}
+                    items={items}
+                  />
+                </Route>
 
-        <Route path="/favorites" exact>
-          <Favorites
-            searchValue={searchValue}
-            onChangeSearchInput={handleOnChangeSearchInput}
-            onAddItemCart={handleOnAddItemCart}
-            items={items}
-          />
-        </Route>
-      </Switch>
+                <Route path="/favorites" exact>
+                  <Favorites
+                    searchValue={searchValue}
+                    onChangeSearchInput={handleOnChangeSearchInput}
+                    onAddItemCart={handleOnAddItemCart}
+                    isLoadingItems={isLoadingItems}
+                    items={items}
+                  />
+                </Route>
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )}
+      />
     </div>
   );
 }
