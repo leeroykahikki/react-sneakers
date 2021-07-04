@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 import Alert from './components/Alert';
@@ -66,24 +66,26 @@ function App() {
 
       <Header onClickCart={() => setCartOpened(true)} />
 
-      <Route path="/" exact>
-        <Home
-          searchValue={searchValue}
-          onChangeSearchInput={handleOnChangeSearchInput}
-          onAddItemCart={handleOnAddItemCart}
-          isLoadingItems={isLoadingItems}
-          items={items}
-        />
-      </Route>
+      <Switch>
+        <Route path="/" exact>
+          <Home
+            searchValue={searchValue}
+            onChangeSearchInput={handleOnChangeSearchInput}
+            onAddItemCart={handleOnAddItemCart}
+            isLoadingItems={isLoadingItems}
+            items={items}
+          />
+        </Route>
 
-      <Route path="/favorites" exact>
-        <Favorites
-          searchValue={searchValue}
-          onChangeSearchInput={handleOnChangeSearchInput}
-          onAddItemCart={handleOnAddItemCart}
-          items={items}
-        />
-      </Route>
+        <Route path="/favorites" exact>
+          <Favorites
+            searchValue={searchValue}
+            onChangeSearchInput={handleOnChangeSearchInput}
+            onAddItemCart={handleOnAddItemCart}
+            items={items}
+          />
+        </Route>
+      </Switch>
     </div>
   );
 }
