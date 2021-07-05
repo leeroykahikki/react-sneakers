@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import ButtonGreen from '../ButtonGreen';
+import styles from './Drawer.module.scss';
 
 function Drawer({ onRemove, setCartOpened, drawerRef, items = [] }) {
   const [overlayRender, setOverlayRender] = useState(false);

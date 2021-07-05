@@ -51,4 +51,14 @@
   .progress {
     border: 0;
   }
+
+  .plus {
+    transition: opacity 0.15s ease-in-out;
+    opacity: 0.5;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

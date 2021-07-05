@@ -29,7 +29,12 @@ function Card({ title, price, imageURL, onAddItemCart }) {
           {isLoading ? (
             <div className="loader" />
           ) : (
-            <img onClick={handleOnAddItemCart} src="/img/btn-plus.svg" alt="btn" />
+            <img
+              className={styles.plus}
+              onClick={handleOnAddItemCart}
+              src="/img/btn-plus.svg"
+              alt="btn"
+            />
           )}
         </div>
       </div>
