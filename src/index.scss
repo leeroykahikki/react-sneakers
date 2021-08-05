@@ -26,6 +26,24 @@ body {
   max-width: 1080px;
 }
 
+.banner {
+  width: 100%;
+  max-width: 990px;
+  height: 100%;
+  max-height: 300px;
+}
+
+.button-next {
+  position: absolute;
+  top: 132px;
+  right: -16px;
+  border-radius: 43px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+  background-color: #fff;
+  width: 35px;
+  height: 35px;
+}
+
 .content {
   h1 {
     margin: 0;

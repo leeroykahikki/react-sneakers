@@ -19,27 +19,48 @@ function App() {
 
   // Изначальный запрос к БД
   useEffect(() => {
-    axios.get('https://60da8c89801dcb00172909d9.mockapi.io/items').then((res) => {
-      setItems(res.data);
-      setIsLoadingItems(false);
-    });
+    axios
+      .get('https://60da8c89801dcb00172909d9.mockapi.io/items')
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((error) => {
+        console.log(`Ошибка подключения к БД\n${error}`);
+      })
+      .then(() => {
+        setIsLoadingItems(false);
+      });
 
-    axios.get('https://60da8c89801dcb00172909d9.mockapi.io/cart').then((res) => {
-      setCartItems(res.data);
-    });
+    axios
+      .get('https://60da8c89801dcb00172909d9.mockapi.io/cart')
+      .then((res) => {
+        setCartItems(res.data);
+      })
+      .catch((error) => {
+        console.log(`Ошибка подключения к БД\n${error}`);
+      });
   }, []);
 
   // Добавление товаров в корзину
   const handleOnAddItemCart = (items, setIsLoading) => {
-    axios.post('https://60da8c89801dcb00172909d9.mockapi.io/cart', items).then((res) => {
-      setCartItems((prev) => [...prev, res.data]);
-      setIsLoading(false);
-    });
+    axios
+      .post('https://60da8c89801dcb00172909d9.mockapi.io/cart', items)
+      .then((res) => {
+        setCartItems((prev) => [...prev, res.data]);
+      })
+      .catch((error) => {
+        console.log(`Ошибка подключения к БД\n${error}`);
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
   };
 
   // Удаление товаров из корзины
   const handleOnRemoveItemCart = (id) => {
-    axios.delete(`https://60da8c89801dcb00172909d9.mockapi.io/cart/${id}`);
+    axios.delete(`https://60da8c89801dcb00172909d9.mockapi.io/cart/${id}`).catch((error) => {
+      console.log(`Ошибка подключения к БД\n${error}`);
+    });
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
@@ -54,12 +75,13 @@ function App() {
       <TransitionGroup>
         {cartOpened && (
           <CSSTransition nodeRef={drawerRef} timeout={300} classNames="overlay">
-            <Drawer
-              onRemove={handleOnRemoveItemCart}
-              setCartOpened={setCartOpened}
-              items={cartItems}
-              drawerRef={drawerRef}
-            />
+            <div ref={drawerRef} className="overlay">
+              <Drawer
+                onRemove={handleOnRemoveItemCart}
+                setCartOpened={setCartOpened}
+                items={cartItems}
+              />
+            </div>
           </CSSTransition>
         )}
       </TransitionGroup>

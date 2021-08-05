@@ -15,7 +15,7 @@ function Header({ onClickCart }) {
       </div>
 
       <ul className="d-flex">
-        <li className="mr-30 cu-p" onClick={onClickCart}>
+        <li className="d-flex mr-30 cu-p" onClick={onClickCart}>
           <img className="mr-10" width={18} height={18} src="/img/cart.svg" alt="Cart" />
           <span>1205 руб.</span> {/* Добавить сюда toLocaleString() */}
         </li>

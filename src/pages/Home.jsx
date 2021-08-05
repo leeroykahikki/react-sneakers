@@ -6,6 +6,13 @@ function Home({ searchValue, onChangeSearchInput, onAddItemCart, isLoadingItems,
 
   return (
     <div className="content p-45">
+      {/* Добавить анимацию */}
+      <div className="pos-r mb-40">
+        <img width={990} height={300} src="/img/banners/banner1.jpg" alt="banner" />
+        <div className="button-next d-flex align-center justify-center cu-p">
+          <img width={5} height={10} src="/img/btn-next.svg" alt="button" />
+        </div>
+      </div>
       <div className="d-flex justify-between align-center mb-40">
         <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все кроссовки'}</h1>
         <div className="search-block d-flex">
@@ -13,7 +20,6 @@ function Home({ searchValue, onChangeSearchInput, onAddItemCart, isLoadingItems,
           <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск..." />
         </div>
       </div>
-
       <div className="d-flex flex-wrap">
         {isLoadingItems
           ? fakeCards.map((card) => <FakeCard key={card} />)
