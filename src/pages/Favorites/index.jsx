@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import Card from '../components/Card';
-import FakeCard from '../components/FakeCard';
+import Card from '../../components/Card';
+import FakeCard from '../../components/FakeCard';
 
-function Favorites({ onAddItemCart, isLoadingItems, items }) {
+export default function Favorites({ onAddItemCart, items }) {
   const fakeCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const isLoadingFavorites = false;
 
   return (
     <div className="content p-45">
@@ -15,7 +16,7 @@ function Favorites({ onAddItemCart, isLoadingItems, items }) {
       </div>
 
       <div className="d-flex flex-wrap">
-        {isLoadingItems
+        {isLoadingFavorites
           ? fakeCards.map((card) => <FakeCard key={card} />)
           : items.map((card) => (
               <Card
@@ -30,5 +31,3 @@ function Favorites({ onAddItemCart, isLoadingItems, items }) {
     </div>
   );
 }
-
-export default Favorites;

@@ -1,9 +1,10 @@
 import { useRef, useState, useEffect } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import ButtonGreen from '../ButtonGreen';
 import styles from './Drawer.module.scss';
+import ButtonRemove from '../ButtonRemove';
+import ButtonGreen from '../ButtonGreen';
 
-function Drawer({ onRemove, setCartOpened, items = [] }) {
+export default function Drawer({ onRemove, setCartOpened, items = [] }) {
   const [overlayRender, setOverlayRender] = useState(false);
   const nodeRef = useRef(null);
 
@@ -28,25 +29,20 @@ function Drawer({ onRemove, setCartOpened, items = [] }) {
   return (
     <TransitionGroup>
       {overlayRender && (
-        <CSSTransition timeout={300} nodeRef={nodeRef} classNames="drawer">
-          <div ref={nodeRef} className="drawer d-flex flex-column">
+        <CSSTransition timeout={300} nodeRef={nodeRef} classNames={{ ...styles }}>
+          <div ref={nodeRef} className={`${styles.drawer} d-flex flex-column`}>
             <h2 className="d-flex justify-between mb-30">
               Корзина
-              <img
-                onClick={() => setOverlayRender(false)}
-                className="btn-remove"
-                src="/img/btn-remove.svg"
-                alt="Remove"
-              />
+              <ButtonRemove onClick={() => setOverlayRender(false)} />
             </h2>
 
-            <div className="items flex">
+            <div className={`${styles.items} flex`}>
               {items.map(({ title, price, imageURL, id }, index) => (
                 <div
-                  className="cart-item d-flex align-center mb-20"
+                  className={`${styles.cartItem} d-flex align-center mb-20`}
                   key={`${title}_${id}_${index}`}>
                   <div
-                    className="cart-item--img mr-20"
+                    className={`${styles.cartItemImg} mr-20`}
                     style={{ backgroundImage: `url(${imageURL})` }}></div>
 
                   <div className="mr-20 flex">
@@ -54,17 +50,12 @@ function Drawer({ onRemove, setCartOpened, items = [] }) {
                     <b>{price.toLocaleString()} руб.</b>
                   </div>
 
-                  <img
-                    onClick={() => onRemove(id)}
-                    className="btn-remove"
-                    src="/img/btn-remove.svg"
-                    alt="Remove"
-                  />
+                  <ButtonRemove onClick={() => onRemove(id)} />
                 </div>
               ))}
             </div>
 
-            <div className="cart-total-block">
+            <div className={`${styles.cartTotalBlock}`}>
               <ul>
                 <li>
                   <span>Итого:</span>
@@ -86,5 +77,3 @@ function Drawer({ onRemove, setCartOpened, items = [] }) {
     </TransitionGroup>
   );
 }
-
-export default Drawer;

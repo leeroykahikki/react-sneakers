@@ -1,6 +1,6 @@
 import styles from './FakeCard.module.scss';
 
-function Card() {
+export default function Card() {
   return (
     <div className={styles.card}>
       <div className={styles.image} />
@@ -13,5 +13,3 @@ function Card() {
     </div>
   );
 }
-
-export default Card;

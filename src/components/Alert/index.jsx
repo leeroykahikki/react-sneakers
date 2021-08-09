@@ -1,11 +1,11 @@
 import styles from './Alert.module.scss';
 
-function Alert({ alerts = [] }) {
+export default function Alert({ alerts = [] }) {
   return (
-    <div className={`${styles['alert-tray']} d-flex`}>
+    <div className={`${styles.aletTray} d-flex`}>
       {alerts.map((alert, index) => (
         <div
-          className={`${styles['alert']} d-flex align-center justify-center`}
+          className={`${styles.alert} d-flex align-center justify-center`}
           key={`${alert}_${index}`}>
           <p>{alert}</p>
         </div>
@@ -13,5 +13,3 @@ function Alert({ alerts = [] }) {
     </div>
   );
 }
-
-export default Alert;

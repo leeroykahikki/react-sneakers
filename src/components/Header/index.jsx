@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Header.module.scss';
 
-function Header({ onClickCart }) {
+export default function Header({ onClickCart }) {
   return (
     <header className="d-flex justify-between align-center p-40">
       <div className="d-flex align-center">
@@ -31,5 +31,3 @@ function Header({ onClickCart }) {
     </header>
   );
 }
-
-export default Header;

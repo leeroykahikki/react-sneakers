@@ -8,7 +8,8 @@
   ],
   "rules": {
     "order/properties-alphabetical-order": null,
-    "max-nesting-depth": [2, { "ignore": ["blockless-at-rules", "pseudo-classes"]}]
+    "max-nesting-depth": [2, { "ignore": ["blockless-at-rules", "pseudo-classes"]}],
+    "selector-class-pattern": "[a-z]"
   },
   "ignoreFiles": ["./node_modules/**", "./src/styles/css/*.css"]
 }

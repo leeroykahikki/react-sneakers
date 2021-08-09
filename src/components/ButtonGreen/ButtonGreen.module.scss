@@ -1,4 +1,4 @@
-.green-button {
+.greenButton {
   position: relative;
   transition: background 0.2s ease-in-out;
   border: 0;
@@ -18,7 +18,7 @@
       transform: translateX(5px);
     }
 
-    .arrow-reverse {
+    .arrowReverse {
       transform: rotate(180deg) translateX(5px);
     }
   }
@@ -34,7 +34,7 @@
     transition: transform 0.15s ease-in-out;
   }
 
-  .arrow-reverse {
+  .arrowReverse {
     position: absolute;
     top: 22px;
     left: 35px;
@@ -42,6 +42,6 @@
   }
 }
 
-.arrow-reverse {
+.arrowReverse {
   transform: rotate(180deg);
 }

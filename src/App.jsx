@@ -8,12 +8,13 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 
-function App() {
+export default function App() {
   const [cartOpened, setCartOpened] = useState(false); // Состояние корзины
   const [searchValue, setSearchValue] = useState(''); // Поиск
   const [cartItems, setCartItems] = useState([]); // Товары в корзине
   const [items, setItems] = useState([]); // Товары
   const [isLoadingItems, setIsLoadingItems] = useState(true); // Состояние изначальной загрузки карточек из БД
+  const [favoriteList, setFavoriteList] = useState([]);
 
   const drawerRef = useRef(null); // Анимация корзины
 
@@ -39,6 +40,11 @@ function App() {
       .catch((error) => {
         console.log(`Ошибка подключения к БД\n${error}`);
       });
+
+    axios.get(`https://60da8c89801dcb00172909d9.mockapi.io/favorites?accountId=0`).then((res) => {
+      let { favoriteList } = res.data[0];
+      setFavoriteList(favoriteList);
+    });
   }, []);
 
   // Добавление товаров в корзину
@@ -69,8 +75,14 @@ function App() {
     event.target.value.trim() ? setSearchValue(event.target.value.trimStart()) : setSearchValue('');
   };
 
+  // Обработка лайка
+  const handleOnClickFavorite = () => {
+    console.log(favoriteList);
+  };
+
   return (
     <div className="wrapper clear">
+      <button onClick={handleOnClickFavorite}>Кликни</button>
       <Alert />
       <TransitionGroup>
         {cartOpened && (
@@ -90,6 +102,7 @@ function App() {
 
       <Route
         render={({ location }) => (
+          // Багует, когда мало favorites айтемов, почекать анимацию
           <TransitionGroup>
             <CSSTransition key={location.key} timeout={300} classNames="page-animation">
               <Switch location={location}>
@@ -106,8 +119,7 @@ function App() {
                 <Route path="/favorites" exact>
                   <Favorites
                     onAddItemCart={handleOnAddItemCart}
-                    isLoadingItems={isLoadingItems}
-                    items={items}
+                    items={items.filter((item) => favoriteList.indexOf(Number(item.id)) !== -1)}
                   />
                 </Route>
               </Switch>
@@ -118,5 +130,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

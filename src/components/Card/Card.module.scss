@@ -17,13 +17,6 @@
     margin-right: 0;
   }
 
-  .favorite {
-    position: absolute;
-    top: 39px;
-    left: 26px;
-    cursor: pointer;
-  }
-
   h5 {
     display: -webkit-box;
     margin: 14px 0;
@@ -34,31 +27,60 @@
     font-weight: 400;
   }
 
+  h5:hover {
+    content: attr(title);
+  }
+
   span {
     opacity: 0.5;
     text-transform: uppercase;
     font-size: 12px;
   }
+}
 
-  .btn-add {
-    border: 1px solid #f2f2f2;
-    border-radius: 8px;
-    background: transparent;
-    width: 32px;
-    height: 32px;
-  }
+.favorite {
+  position: absolute;
+  top: 39px;
+  left: 26px;
+  cursor: pointer;
 
-  .progress {
-    border: 0;
-  }
-
-  .plus {
-    transition: opacity 0.15s ease-in-out;
-    opacity: 0.5;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 1;
+  &:hover {
+    rect {
+      stroke-opacity: 1;
     }
+
+    path {
+      stroke-opacity: 1;
+    }
+  }
+
+  rect {
+    transition: stroke-opacity 0.15s ease-in-out;
+  }
+
+  path {
+    transition: stroke-opacity 0.15s ease-in-out;
+  }
+}
+
+.btnAdd {
+  border: 1px solid #f2f2f2;
+  border-radius: 8px;
+  background: transparent;
+  width: 32px;
+  height: 32px;
+}
+
+.progress {
+  border: 0;
+}
+
+.plus {
+  transition: opacity 0.15s ease-in-out;
+  opacity: 0.5;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
   }
 }
