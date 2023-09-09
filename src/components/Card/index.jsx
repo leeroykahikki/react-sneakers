@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import styles from './Card.module.scss';
+import { useEffect, useState } from 'react';
 import Loader from '../Loader';
+import styles from './Card.module.scss';
 
 export default function Card({ title, price, imageURL, onAddItemCart, likeStatus }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    setIsLike(likeStatus);
-  }, [])
+    setIsLiked(likeStatus);
+  }, []);
 
   const handleOnAddItemCart = () => {
     setIsLoading(true);
@@ -19,7 +19,6 @@ export default function Card({ title, price, imageURL, onAddItemCart, likeStatus
     <div className={styles.card}>
       <div className={styles.favorite}>
         <svg
-        className={}
           width="32"
           height="32"
           viewBox="0 0 32 32"
